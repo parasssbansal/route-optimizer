@@ -40,6 +40,30 @@ npm run dev
 
 The app runs at `http://127.0.0.1:5173`.
 
+## Render Deployment
+
+If you want one Render web service to serve both the API and the React app:
+
+Build Command:
+
+```bash
+cd frontend && npm install && npm run build && cd .. && pip install -r requirements.txt
+```
+
+Start Command:
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port $PORT
+```
+
+Also set:
+
+```bash
+PYTHON_VERSION=3.11.9
+```
+
+The backend will serve the built React app from `frontend/dist` at `/`, while the API remains available at `/optimize-route` and `/docs`.
+
 ## Environment Configuration
 
 By default, the frontend uses the Vite proxy and sends API requests to `/api`.
